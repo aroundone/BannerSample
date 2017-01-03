@@ -2,6 +2,7 @@ package com.foxmail.aroundme.recyclerbanner;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by gzl on 1/3/17.
+ *
  */
 
 public class RecyclerBannerAdapter extends RecyclerView.Adapter<Holder>{
@@ -28,7 +30,7 @@ public class RecyclerBannerAdapter extends RecyclerView.Adapter<Holder>{
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.banner, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
 
         return new Holder(view);
     }
@@ -36,17 +38,26 @@ public class RecyclerBannerAdapter extends RecyclerView.Adapter<Holder>{
     @Override
     public void onBindViewHolder(Holder holder, int position) {
 
-        if(urls == null || urls.get(position) == null) {
+        Log.d("msg", "onBindViewHolder position = " + position % urls.size());
+        if(urls == null || urls.get(position % urls.size()) == null) {
             return;
         }
-
-
-        Glide.with(context).load(urls.get(position)).into(holder.imageView);
-
+        if(holder.imageView == null) {
+            return;
+        }
+        Glide.with(context).load(urls.get(position % urls.size())).into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
+        return urls == null ? 0 : urls.size() < 2 ? urls.size() : Integer.MAX_VALUE;
+    }
+
+    /**
+     * 实际数据大小
+     * @return
+     */
+    public int getRealCount() {
         return urls.size();
     }
 }

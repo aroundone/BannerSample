@@ -17,8 +17,7 @@ public class GAty extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.
-                layout.gaty);
+        setContentView(R.layout.gaty);
 
         BannerLayout bannerLayout = (BannerLayout) findViewById(R.id.banner);
         BannerLayout bannerLayout2 = (BannerLayout) findViewById(R.id.banner2);

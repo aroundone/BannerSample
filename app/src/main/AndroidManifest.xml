@@ -10,16 +10,21 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".GAty">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".GAty">
+
+        </activity>
+
+        <activity android:name=".RAty">
+
+        </activity>
+
+        <activity android:name=".MAty"/>
     </application>
 
 </manifest>
