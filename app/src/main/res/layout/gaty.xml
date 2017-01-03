@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.foxmail.aroundme.bannertest.GAty">
 
-    <com.foxmail.aroundme.banner.BannerLayout
+    <com.foxmail.aroundme.banner.viewpager.BannerLayout
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.foxmail.aroundme.banner.BannerLayout
+    <com.foxmail.aroundme.banner.viewpager.BannerLayout
         android:id="@+id/banner2"
         android:layout_width="match_parent"
         android:layout_height="200dp"

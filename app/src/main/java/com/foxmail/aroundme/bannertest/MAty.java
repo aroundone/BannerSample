@@ -3,8 +3,8 @@ package com.foxmail.aroundme.bannertest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.foxmail.aroundme.banner.BannerPagerAdapter;
-import com.foxmail.aroundme.banner.GViewPager;
+import com.foxmail.aroundme.banner.viewpager.BannerPagerAdapter;
+import com.foxmail.aroundme.banner.viewpager.GViewPager;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.foxmail.aroundme.recyclerbanner.FixLinearSnapHelper;
-import com.foxmail.aroundme.recyclerbanner.GRecyclerView;
-import com.foxmail.aroundme.recyclerbanner.RecyclerBannerAdapter;
-import com.foxmail.aroundme.recyclerbanner.ScrollSpeedLinearLayoutManger;
+import com.foxmail.aroundme.banner.recyclerview.FixLinearSnapHelper;
+import com.foxmail.aroundme.banner.recyclerview.GRecyclerView;
+import com.foxmail.aroundme.banner.recyclerview.RecyclerBannerAdapter;
+import com.foxmail.aroundme.banner.recyclerview.ScrollSpeedLinearLayoutManger;
 
 import java.util.ArrayList;
 import java.util.List;

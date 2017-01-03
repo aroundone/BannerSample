@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.foxmail.aroundme.bannertest.MainActivity">
 
-    <com.foxmail.aroundme.banner.GViewPager
+    <com.foxmail.aroundme.banner.viewpager.GViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

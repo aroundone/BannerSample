@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.foxmail.aroundme.banner.BannerLayout;
+import com.foxmail.aroundme.banner.viewpager.BannerLayout;
 
 /**
  * Created by Administrator on 2016/12/21 0021.

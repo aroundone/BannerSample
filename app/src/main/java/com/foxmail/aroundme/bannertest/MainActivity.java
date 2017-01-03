@@ -1,23 +1,9 @@
 package com.foxmail.aroundme.bannertest;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-
-import com.foxmail.aroundme.banner.BannerPagerAdapter;
-import com.foxmail.aroundme.banner.GViewPager;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
 
 public class MainActivity extends AppCompatActivity{
 
