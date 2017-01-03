@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void initData() {
-        list.add("http://img1.imgtn.bdimg.com/it/u=1826333971,3126752734&fm=21&gp=0.jpg");
+        list.add("http://img1.imgtn.bdimg.com/it/u=1826333971,3126752734&fm=21&gp=0.jpg");/*
         list.add("http://www.mtchome.com/d/file/p/2014/06-26/c6ff44b610e7ac891a7aca2d5677a474.jpg");
         list.add("http://www.lnmoto.cn/bbs/data/attachment/forum/201408/12/074018gshshia3is1cw3sg.jpg");
         list.add("http://www.moto2s.com/ppimg/20150922/0922155607nubdxxplphi.jpg");
         list.add("http://www.harley-davidsonbeijing.com/uploads/141113/1-1411131J504X6.jpg");
         list.add("http://image84.360doc.com/DownloadImg/2015/04/1915/52587646_8.jpg");
-        list.add("http://www.harley-davidsonbeijing.com/uploads/allimg/141113/1-1411131J6190-L.jpg");
+        list.add("http://www.harley-davidsonbeijing.com/uploads/allimg/141113/1-1411131J6190-L.jpg");*/
     }
 
 }
