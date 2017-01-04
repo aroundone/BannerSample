@@ -31,7 +31,6 @@ public class MAty extends AppCompatActivity {
         BannerPagerAdapter bannerPagerAdapter = new BannerPagerAdapter(this, list);
 
         viewPager.setAdapter(bannerPagerAdapter);
-        viewPager.setCurrentItem(70);
         viewPager.setScrollDuration(2000);
 
     }
