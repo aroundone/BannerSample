@@ -10,20 +10,18 @@
     <com.foxmail.aroundme.banner.viewpager.BannerLayout
         android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         app:intervalDuration="4000"
         app:indicatorMargin="10dp"
-        app:indicatorPosition="rightBottom"
-        app:indicatorShape="rect"
+        app:indicatorPosition="centerTop"
+        app:indicatorShape="oval"
         app:indicatorSpace="3dp"
         app:isAutoPlay="true"
-        app:scrollDuration="2500"
+        app:scrollDuration="3000"
         app:selectedIndicatorColor="#ffffff"
         app:selectedIndicatorHeight="6dp"
         app:selectedIndicatorWidth="6dp"
-        app:unSelectedIndicatorColor="#99ffffff"
+        app:unSelectedIndicatorColor="#cccccc"
         app:unSelectedIndicatorHeight="6dp"
         app:unSelectedIndicatorWidth="6dp"/>
-
-
 </LinearLayout>
