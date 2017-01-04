@@ -3,7 +3,6 @@ package com.foxmail.aroundme.bannertest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.foxmail.aroundme.banner.viewpager.BannerViewPager;
 import com.foxmail.aroundme.banner.viewpager.IOnItemClickListener;
@@ -32,7 +31,9 @@ public class GAty extends AppCompatActivity {
         urls.add("http://img5.imgtn.bdimg.com/it/u=2583054979,2860372508&fm=23&gp=0.jpg");
         urls.add("http://img5.imgtn.bdimg.com/it/u=2583054979,2860372508&fm=23&gp=0.jpg");
 
+        bannerLayout.setItemView(new ItemView(this));
         bannerLayout.setUrls(urls);
+
 
         bannerLayout.setOnItemClickListener(new IOnItemClickListener() {
             @Override
