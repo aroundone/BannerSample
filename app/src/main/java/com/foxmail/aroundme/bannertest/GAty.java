@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.foxmail.aroundme.banner.viewpager.BannerLayout;
+import com.foxmail.aroundme.banner.viewpager.BannerViewPager;
 import com.foxmail.aroundme.banner.viewpager.IOnItemClickListener;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class GAty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gaty);
 
-        BannerLayout bannerLayout = (BannerLayout) findViewById(R.id.banner);
+        BannerViewPager bannerLayout = (BannerViewPager) findViewById(R.id.banner);
 
         final List<String> urls = new ArrayList<>();
         urls.add("http://img3.imgtn.bdimg.com/it/u=2674591031,2960331950&fm=23&gp=0.jpg");
