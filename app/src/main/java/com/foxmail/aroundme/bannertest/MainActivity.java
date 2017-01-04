@@ -13,12 +13,6 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.self_viewpager).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MAty.class));
-            }
-        });
         findViewById(R.id.net_viewpager).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

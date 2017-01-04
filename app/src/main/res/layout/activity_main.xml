@@ -9,18 +9,13 @@
     tools:context="com.foxmail.aroundme.bannertest.MainActivity">
 
     <Button
-        android:id="@+id/self_viewpager"
-        android:text="自己写的ViewPager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
         android:id="@+id/net_viewpager"
-        android:text="网上的ViewPager"
+        android:text="ViewPager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/self_recyclerview"
-        android:text="自己写的RecyclerView"
+        android:text="RecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>
