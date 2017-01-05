@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.foxmail.aroundme.banner.recyclerview.BannerRecyclerView
+        android:id="@+id/banner_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:intervalDuration="4000"
+        app:indicatorMargin="10dp"
+        app:indicatorPosition="centerTop"
+        app:indicatorShape="oval"
+        app:indicatorSpace="3dp"
+        app:isAutoPlay="true"
+        app:scrollDuration="3000"
+        app:selectedIndicatorColor="#ffffff"
+        app:selectedIndicatorHeight="6dp"
+        app:selectedIndicatorWidth="6dp"
+        app:unSelectedIndicatorColor="#cccccc"
+        app:unSelectedIndicatorHeight="6dp"
+        app:unSelectedIndicatorWidth="6dp"/>
+</LinearLayout>

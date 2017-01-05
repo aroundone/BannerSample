@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.foxmail.aroundme.banner.indicator.ShowItemView;
+import com.foxmail.aroundme.banner.viewpager.ShowItemView;
 
 /**
  * Created by gzl on 1/4/17.
