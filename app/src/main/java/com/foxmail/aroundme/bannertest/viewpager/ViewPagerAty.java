@@ -1,4 +1,4 @@
-package com.foxmail.aroundme.bannertest;
+package com.foxmail.aroundme.bannertest.viewpager;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,15 +6,18 @@ import android.util.Log;
 
 import com.foxmail.aroundme.banner.viewpager.BannerViewPager;
 import com.foxmail.aroundme.banner.viewpager.IOnItemClickListener;
+import com.foxmail.aroundme.bannertest.R;
+import com.foxmail.aroundme.bannertest.viewpager.ItemView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by gzl on 1/2/17.
+ *
  */
 
-public class GAty extends AppCompatActivity {
+public class ViewPagerAty extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

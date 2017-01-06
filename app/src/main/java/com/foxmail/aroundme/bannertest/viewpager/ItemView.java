@@ -1,4 +1,4 @@
-package com.foxmail.aroundme.bannertest;
+package com.foxmail.aroundme.bannertest.viewpager;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.foxmail.aroundme.banner.viewpager.ShowItemView;
+import com.foxmail.aroundme.bannertest.R;
 
 /**
  * Created by gzl on 1/4/17.

@@ -1,10 +1,11 @@
-package com.foxmail.aroundme.bannertest;
+package com.foxmail.aroundme.bannertest.recyclerview;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.foxmail.aroundme.banner.recyclerview.BannerRecyclerView;
+import com.foxmail.aroundme.bannertest.R;
 import com.foxmail.aroundme.bannertest.recyclerview.NewItem;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by gzl on 1/3/17.
  */
 
-public class RAty extends AppCompatActivity{
+public class RecyclerAty extends AppCompatActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,15 +37,6 @@ public class RAty extends AppCompatActivity{
         BannerRecyclerView bannerRecyclerView = (BannerRecyclerView)findViewById(R.id.banner_recycler);
         bannerRecyclerView.setItemView(new NewItem(this));
         bannerRecyclerView.setUrls(urls);
-        /*GRecyclerView recyclerView = (GRecyclerView)findViewById(R.id.recycler_view);
-
-        LinearLayoutManager linearLayoutManager = new ScrollSpeedLinearLayoutManger(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        new FixLinearSnapHelper().attachToRecyclerView(recyclerView);
-        recyclerView.setAdapter(new RecyclerBannerAdapter(this, urls));*/
-
-
 
     }
 }

@@ -17,14 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GAty">
+        <activity android:name=".viewpager.ViewPagerAty"/>
 
-        </activity>
-
-        <activity android:name=".RAty">
-
-        </activity>
-
+        <activity android:name=".recyclerview.RecyclerAty"/>
     </application>
 
 </manifest>
