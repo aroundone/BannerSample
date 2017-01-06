@@ -51,6 +51,5 @@ public class NewItem extends RecyclerItem<Holder> {
                 return false;
             }
         }).into(holder.imageView);
-        //holder.imageView.setImageResource(R.mipmap.ic_launcher);
     }
 }
