@@ -11,14 +11,15 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.foxmail.aroundme.banner.recyclerview.RecyclerItem;
+import com.foxmail.aroundme.banner.recyclerview.RecyclerItemView;
 import com.foxmail.aroundme.bannertest.R;
 
 /**
  * Created by gzl on 1/5/17.
+ *
  */
 
-public class NewItem extends RecyclerItem<Holder> {
+public class NewItem implements RecyclerItemView<Holder> {
 
     private Context context;
 

@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.foxmail.aroundme.banner.viewpager.ShowItemView;
+import com.foxmail.aroundme.banner.viewpager.ViewPagerItem;
 import com.foxmail.aroundme.bannertest.R;
 
 /**
  * Created by gzl on 1/4/17.
  */
 
-public class ItemView implements ShowItemView{
+public class ItemView implements ViewPagerItem {
 
     private Context context;
 
