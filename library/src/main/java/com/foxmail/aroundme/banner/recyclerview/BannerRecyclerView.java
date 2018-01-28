@@ -26,7 +26,7 @@ import java.util.List;
  *
  */
 
-public class BannerRecyclerView extends LinearLayout{
+public class BannerRecyclerView extends RelativeLayout implements IOnPageChangeListener {
 
     private GRecyclerView recyclerView;
 
@@ -148,6 +148,8 @@ public class BannerRecyclerView extends LinearLayout{
 
     public void setUrls(List<String> urls) {
 
+        itemCount = urls.size();
+
         initRecyclerView(urls);
 
         initIndicator();
@@ -168,12 +170,15 @@ public class BannerRecyclerView extends LinearLayout{
         adapter.setRecyclerItemView(recyclerItemView);
         recyclerView.setAdapter(adapter);
 
+        recyclerView.setOnPageChangeListener(this);
+
     }
 
     private void initIndicator() {
         //初始化indicatorContainer
         indicatorContainer = new LinearLayout(getContext());
         indicatorContainer.setGravity(Gravity.CENTER_VERTICAL);
+        indicatorContainer.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
         //设置展示区域
@@ -233,7 +238,7 @@ public class BannerRecyclerView extends LinearLayout{
      */
     public void setIOnPageChangeListener(IOnPageChangeListener iOnPageChangeListener) {
         if(recyclerView != null) {
-            recyclerView.setiOnPageChangeListener(iOnPageChangeListener);
+            recyclerView.setOnPageChangeListener(iOnPageChangeListener);
         }
     }
 
@@ -255,5 +260,10 @@ public class BannerRecyclerView extends LinearLayout{
         for (int i = 0; i < indicatorContainer.getChildCount(); i++) {
             ((ImageView) indicatorContainer.getChildAt(i)).setImageDrawable(i == currentPosition ? selectedDrawable : unSelectedDrawable);
         }
+    }
+
+    @Override
+    public void onPageChangeListener(int position) {
+        switchIndicator(position);
     }
 }

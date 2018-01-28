@@ -10,6 +10,8 @@ import android.view.View;
 
 import com.foxmail.aroundme.banner.indicator.IOnPageChangeListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
@@ -29,7 +31,7 @@ public class GRecyclerView extends RecyclerView{
     //设置全局防止重复订阅
     private Subscription subscription;
 
-    private IOnPageChangeListener iOnPageChangeListener;
+    private List<IOnPageChangeListener> onPageChangeListeners;
 
     public GRecyclerView(Context context) {
         super(context);
@@ -47,6 +49,7 @@ public class GRecyclerView extends RecyclerView{
     }
 
     private void init() {
+        onPageChangeListeners = new ArrayList<>();
         beginAutoScroll();
     }
 
@@ -76,13 +79,23 @@ public class GRecyclerView extends RecyclerView{
                     smoothScrollToPosition(getVisiblePosition() + 1);
 
                     if(position == itemCount) {
-                        iOnPageChangeListener.onPageChangeListener(0);
+                        postListener(0);
                         return;
                     }
-                    iOnPageChangeListener.onPageChangeListener((position + 1));
+                    postListener((position + 1));
                 }
             }
         });
+    }
+
+    private void postListener(int position) {
+        if (onPageChangeListeners == null) {
+            return;
+        }
+
+        for (IOnPageChangeListener listener : onPageChangeListeners) {
+            listener.onPageChangeListener(position);
+        }
     }
 
     /**
@@ -118,8 +131,10 @@ public class GRecyclerView extends RecyclerView{
         scrollToPosition(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % itemCount);
     }
 
-    public void setiOnPageChangeListener(IOnPageChangeListener iOnPageChangeListener) {
-        this.iOnPageChangeListener = iOnPageChangeListener;
+    public void setOnPageChangeListener(IOnPageChangeListener iOnPageChangeListener) {
+        if (onPageChangeListeners != null) {
+            onPageChangeListeners.add(iOnPageChangeListener);
+        }
     }
 
 
