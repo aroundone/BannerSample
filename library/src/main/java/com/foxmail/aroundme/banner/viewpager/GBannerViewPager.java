@@ -1,9 +1,13 @@
 package com.foxmail.aroundme.banner.viewpager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.foxmail.aroundme.banner.indicator.Config;
@@ -13,12 +17,8 @@ import com.foxmail.aroundme.banner.indicator.IOnPageChangeListener;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by gzl on 12/30/16.
@@ -42,9 +42,33 @@ public class GBannerViewPager extends ViewPager{
 
     private IOnItemClickListener iOnItemClickListener;
 
+    private TimerTask timerTask = new TimerTask() {
+        @Override
+        public void run() {
+            Message msg=new Message();
+            msg.what=1;
+            Log.d("gzl", "发送一个事件");
+            if (handler != null) {
+                handler.sendMessage(msg);
+            }
+        }
+    };
 
-    //设置全局防止重复订阅
-    private Subscription subscription;
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            switch(msg.what){
+                case 1:
+                    if(isCanScroll) {
+                        setCurrentItem(currentIndex + 1);
+                    }
+                    break;
+            }
+        }
+    };
+
+
+    private Timer timer = new Timer();
 
     public GBannerViewPager(Context context) {
         super(context);
@@ -58,6 +82,22 @@ public class GBannerViewPager extends ViewPager{
         init();
     }
 
+    @Override
+    protected void onWindowVisibilityChanged(int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        if (timer == null || timerTask == null) {
+            return;
+        }
+        if (visibility == VISIBLE) {
+            startScrollV2();
+            Log.d("gzl", "onWindowVisibilityChanged = VISIBLE");
+        } else {
+            timer.cancel();
+            Log.d("gzl", "停止计时器");
+        }
+    }
+
+
     private void init() {
         addOnPageChangeListener(new OnPageChangeListener() {
             @Override
@@ -69,7 +109,7 @@ public class GBannerViewPager extends ViewPager{
             public void onPageSelected(int position) {
                 currentIndex = position;
                 if(Config.itemCount != 0) {
-                    notification(position % Config.itemCount);
+                    postListener(position % Config.itemCount);
                 }
             }
 
@@ -80,6 +120,15 @@ public class GBannerViewPager extends ViewPager{
         });
 
         initViewPagerScroll();
+    }
+
+    /**
+     * @param position
+     */
+    private void postListener(int position) {
+        for(IOnPageChangeListener iOnPageChangeListener : listeners) {
+            iOnPageChangeListener.onPageChangeListener(position);
+        }
     }
 
     @Override
@@ -95,49 +144,17 @@ public class GBannerViewPager extends ViewPager{
         setCurrentItem(firstPosition);
     }
 
-    private void startAutoScroll() {
-
-        //取消上次订阅
-        if(subscription != null) {
-            subscription.unsubscribe();
-        }
-
-        // TODO: 1/9/17 会产生两个计时器
-        subscription = Observable.interval(intervalDuration, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<Long>() {
-            @Override
-            public void onCompleted() {
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Long aLong) {
-                if(isCanScroll) {
-                    setCurrentItem(currentIndex + 1);
-                }
-            }
-        });
+    private void startScrollV2() {
+        timer.schedule(timerTask, intervalDuration, intervalDuration);
+        Log.d("gzl", "开始计时器");
     }
 
-    /**
-     * @param position
-     */
-    private void notification(int position) {
-        for(IOnPageChangeListener iOnPageChangeListener : listeners) {
-            iOnPageChangeListener.onPageChangeListener(position);
-        }
-    }
 
     /**
      * 设置可以自动滚动
      */
     public void setIsCanScroll(boolean setIsCanScroll) {
             this.isCanScroll = setIsCanScroll;
-            startAutoScroll();
     }
 
     public void setScrollDuration(int scrollDuration) {

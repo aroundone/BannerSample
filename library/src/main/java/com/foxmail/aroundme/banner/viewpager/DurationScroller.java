@@ -11,7 +11,7 @@ import android.widget.Scroller;
  */
 public class DurationScroller extends Scroller {
 
-    private int mScrollDuration = 2000;
+    private int mScrollDuration = 1000;
 
     public DurationScroller(Context context) {
         super(context);
