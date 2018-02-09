@@ -1,23 +1,21 @@
 package com.foxmail.aroundme.banner.recyclerview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.foxmail.aroundme.banner.indicator.IOnPageChangeListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by gzl on 1/3/17.
@@ -28,10 +26,46 @@ public class GRecyclerView extends RecyclerView{
     private int itemCount;
 
     private boolean isCanScroll;
-    //设置全局防止重复订阅
-    private Subscription subscription;
+
+    private int intervalDuration = 3000;
 
     private List<IOnPageChangeListener> onPageChangeListeners;
+
+    private Timer timer = new Timer();
+
+    private TimerTask timerTask = new TimerTask() {
+        @Override
+        public void run() {
+            Message msg=new Message();
+            msg.what=1;
+            if (handler != null) {
+                handler.sendMessage(msg);
+            }
+        }
+    };
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            switch(msg.what){
+                case 1:
+                    if(isCanScroll) {
+
+                        int position = getVisiblePosition() % itemCount;
+
+                        //移到下一个
+                        smoothScrollToPosition(getVisiblePosition() + 1);
+
+                        if(position == itemCount) {
+                            postListener(0);
+                            return;
+                        }
+                        postListener((position + 1));
+                    }
+                    break;
+            }
+        }
+    };
 
     public GRecyclerView(Context context) {
         super(context);
@@ -50,42 +84,10 @@ public class GRecyclerView extends RecyclerView{
 
     private void init() {
         onPageChangeListeners = new ArrayList<>();
-        beginAutoScroll();
     }
 
     private void beginAutoScroll() {
-        //取消上次订阅
-        if(subscription != null) {
-            subscription.unsubscribe();
-        }
-
-        subscription = Observable.interval(4, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<Long>() {
-            @Override
-            public void onCompleted() {
-            }
-
-            @Override
-            public void onError(Throwable e) {
-            }
-
-            @Override
-            public void onNext(Long aLong) {
-                if(isCanScroll) {
-
-                    int position = getVisiblePosition() % itemCount;
-
-                    //移到下一个
-                    smoothScrollToPosition(getVisiblePosition() + 1);
-
-                    if(position == itemCount) {
-                        postListener(0);
-                        return;
-                    }
-                    postListener((position + 1));
-                }
-            }
-        });
+        timer.schedule(timerTask, intervalDuration, intervalDuration);
     }
 
     private void postListener(int position) {
@@ -104,7 +106,6 @@ public class GRecyclerView extends RecyclerView{
     public void setIsCanScroll(boolean setIsCanScroll) {
         if(setIsCanScroll) {
             this.isCanScroll = true;
-            beginAutoScroll();
         } else {
             this.isCanScroll = false;
         }
@@ -142,24 +143,13 @@ public class GRecyclerView extends RecyclerView{
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         setIsCanScroll(true);
+        beginAutoScroll();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         setIsCanScroll(false);
-    }
-
-    @Override
-    protected void onWindowVisibilityChanged(int visibility) {
-        if(visibility == View.GONE){
-            // 停止轮播
-            setIsCanScroll(false);
-        }else if(visibility == View.VISIBLE){
-            // 开始轮播
-            setIsCanScroll(true);
-        }
-        super.onWindowVisibilityChanged(visibility);
     }
 
 
