@@ -7,7 +7,6 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import com.foxmail.aroundme.banner.indicator.Config;
@@ -47,7 +46,6 @@ public class GBannerViewPager extends ViewPager{
         public void run() {
             Message msg=new Message();
             msg.what=1;
-            Log.d("gzl", "发送一个事件");
             if (handler != null) {
                 handler.sendMessage(msg);
             }
@@ -83,18 +81,16 @@ public class GBannerViewPager extends ViewPager{
     }
 
     @Override
-    protected void onWindowVisibilityChanged(int visibility) {
-        super.onWindowVisibilityChanged(visibility);
-        if (timer == null || timerTask == null) {
-            return;
-        }
-        if (visibility == VISIBLE) {
-            startScrollV2();
-            Log.d("gzl", "onWindowVisibilityChanged = VISIBLE");
-        } else {
-            timer.cancel();
-            Log.d("gzl", "停止计时器");
-        }
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        setIsCanScroll(true);
+        beginAutoScroll();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        setIsCanScroll(false);
     }
 
 
@@ -144,9 +140,8 @@ public class GBannerViewPager extends ViewPager{
         setCurrentItem(firstPosition);
     }
 
-    private void startScrollV2() {
+    private void beginAutoScroll() {
         timer.schedule(timerTask, intervalDuration, intervalDuration);
-        Log.d("gzl", "开始计时器");
     }
 
 
