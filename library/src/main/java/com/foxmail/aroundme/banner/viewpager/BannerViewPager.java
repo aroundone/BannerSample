@@ -183,11 +183,9 @@ public class BannerViewPager extends RelativeLayout implements IOnPageChangeList
 
         Config.itemCount = urls.size();
 
-        initIndicator();
-
         initViewPager(urls);
 
-
+        initIndicator();
     }
 
     private void initViewPager(List<String> urls) {
