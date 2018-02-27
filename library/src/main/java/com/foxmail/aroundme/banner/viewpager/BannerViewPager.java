@@ -184,7 +184,6 @@ public class BannerViewPager extends RelativeLayout implements IOnPageChangeList
         Config.itemCount = urls.size();
 
         initViewPager(urls);
-
         initIndicator();
     }
 
@@ -269,8 +268,10 @@ public class BannerViewPager extends RelativeLayout implements IOnPageChangeList
      * @param currentPosition 当前位置
      */
     private void switchIndicator(int currentPosition) {
-        for (int i = 0; i < indicatorContainer.getChildCount(); i++) {
-            ((ImageView) indicatorContainer.getChildAt(i)).setImageDrawable(i == currentPosition ? selectedDrawable : unSelectedDrawable);
+        if (indicatorContainer != null) {
+            for (int i = 0; i < indicatorContainer.getChildCount(); i++) {
+                ((ImageView) indicatorContainer.getChildAt(i)).setImageDrawable(i == currentPosition ? selectedDrawable : unSelectedDrawable);
+            }
         }
     }
 
