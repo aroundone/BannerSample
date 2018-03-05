@@ -1,5 +1,6 @@
 package com.foxmail.aroundme.bannertest.viewpager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -7,7 +8,9 @@ import android.util.Log;
 import com.foxmail.aroundme.banner.indicator.IOnPageChangeListener;
 import com.foxmail.aroundme.banner.viewpager.BannerViewPager;
 import com.foxmail.aroundme.banner.indicator.IOnItemClickListener;
+import com.foxmail.aroundme.bannertest.MainActivity;
 import com.foxmail.aroundme.bannertest.R;
+import com.foxmail.aroundme.bannertest.recyclerview.RecyclerAty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +38,14 @@ public class ViewPagerAty extends AppCompatActivity {
 
         bannerViewPager.setViewPagerItem(new ItemView(this));
 
+        bannerViewPager.setUrls(urls);
+
         bannerViewPager.setOnItemClickListener(new IOnItemClickListener() {
             @Override
             public void OnClickListener(int position) {
                 Log.d("msg", "viewpager setOnItemClickListener position = " + position);
+
+                startActivity(new Intent(ViewPagerAty.this, RecyclerAty.class));
             }
         });
         bannerViewPager.setOnPageChangeListener(new IOnPageChangeListener() {
@@ -47,8 +54,6 @@ public class ViewPagerAty extends AppCompatActivity {
                 Log.d("msg", "viewpager setOnPageChangeListener position = " + position);
             }
         });
-
-        bannerViewPager.setUrls(urls);
 
     }
 }

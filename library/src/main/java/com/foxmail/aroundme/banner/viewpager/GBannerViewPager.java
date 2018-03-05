@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 
 import com.foxmail.aroundme.banner.indicator.Config;
 import com.foxmail.aroundme.banner.indicator.IOnItemClickListener;
@@ -66,7 +68,7 @@ public class GBannerViewPager extends ViewPager{
     };
 
 
-    private Timer timer = new Timer();
+    private Timer timer;
 
     public GBannerViewPager(Context context) {
         super(context);
@@ -93,6 +95,15 @@ public class GBannerViewPager extends ViewPager{
         setIsCanScroll(false);
     }
 
+    @Override
+    protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
+        if (visibility == VISIBLE) {
+            setIsCanScroll(true);
+        } else if (visibility == GONE) {
+            setIsCanScroll(false);
+        }
+    }
 
     private void init() {
         addOnPageChangeListener(new OnPageChangeListener() {
@@ -141,7 +152,10 @@ public class GBannerViewPager extends ViewPager{
     }
 
     private void beginAutoScroll() {
-        timer.schedule(timerTask, intervalDuration, intervalDuration);
+        if (timer == null) {
+            timer = new Timer();
+            timer.schedule(timerTask, intervalDuration, intervalDuration);
+        }
     }
 
 
