@@ -100,7 +100,7 @@ public class GBannerViewPager extends ViewPager{
         super.onVisibilityChanged(changedView, visibility);
         if (visibility == VISIBLE) {
             setIsCanScroll(true);
-        } else if (visibility == GONE) {
+        } else {
             setIsCanScroll(false);
         }
     }

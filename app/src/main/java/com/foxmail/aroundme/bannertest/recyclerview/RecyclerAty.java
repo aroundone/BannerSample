@@ -1,5 +1,6 @@
 package com.foxmail.aroundme.bannertest.recyclerview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,9 @@ import android.util.Log;
 import com.foxmail.aroundme.banner.indicator.IOnItemClickListener;
 import com.foxmail.aroundme.banner.recyclerview.BannerRecyclerView;
 import com.foxmail.aroundme.banner.indicator.IOnPageChangeListener;
+import com.foxmail.aroundme.bannertest.MainActivity;
 import com.foxmail.aroundme.bannertest.R;
+import com.foxmail.aroundme.bannertest.viewpager.ViewPagerAty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +43,11 @@ public class RecyclerAty extends AppCompatActivity{
         bannerRecyclerView.setRecyclerItemView(new NewItem(this));
         bannerRecyclerView.setUrls(urls);
 
-        // TODO: 1/9/17 View还没有添加进去 
         bannerRecyclerView.setIOnPageChangeListener(new IOnPageChangeListener() {
             @Override
             public void onPageChangeListener(int position) {
                 Log.d("msg", "recycler position = " + position);
+
             }
         });
 
@@ -52,6 +55,7 @@ public class RecyclerAty extends AppCompatActivity{
             @Override
             public void OnClickListener(int position) {
                 Log.d("msg", "recycler item click position = " + position);
+                startActivity(new Intent(RecyclerAty.this, ViewPagerAty.class));
             }
         });
 
